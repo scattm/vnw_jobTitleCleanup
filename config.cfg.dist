@@ -1,0 +1,18 @@
+[SRC_ES]
+host = localhost
+port = 9200
+password = Password
+index = suggester_index_v2_5
+
+[DES_ES]
+host = localhost
+port = 9200
+index = suggester_index_v2_5
+
+[SQLite]
+filename = jobsuggester.db
+
+[SPECIAL_CHAR]
+ascii = [u'-', u'&', u'.', u'#', u'+', u'\x02', u'\x03']
+unicode = [u'\u2026', u'\xa0', u'\u2010', u'\xfc', u'\u2018', u'\xad', u'\u200b']
+
