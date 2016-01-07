@@ -19,7 +19,7 @@ if __name__ == '__main__':
                 print "Please enter file name"
             else:
                 filename = argv[2]
-                es2sqlite = ES2SQLite(configfile, 'SRC_ES')
+                es2sqlite = ES2SQLite(configfile, 'DES_ES')
                 es2sqlite.create_sqlite_table()
                 es2sqlite.insert_from_file(filename)
 
