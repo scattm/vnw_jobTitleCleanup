@@ -7,8 +7,9 @@ Import from ES:
 python JobSuggesterCleanUp import
 ```
 
-Import from tsv file and export to ES index:
-- Edit filename on `__main__.py`, line  `es2sqlite.insert_from_file('JobTitle-v2_5.tsv')` 
+Import from tsv file and export to ES index (update index name on config.cfg first):
 ```
-python JobSuggesterCleanUp importfile
+python JobSuggesterCleanUp importfile path/to/file
 ```
+
+TODO: move ES config session to params
