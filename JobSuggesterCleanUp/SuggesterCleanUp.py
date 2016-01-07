@@ -117,7 +117,7 @@ class SuggesterCleanUp:
                 if len(suggesters) > 1:
 
                     max_score, suggesters = weighting_suggester(suggesters)
-                    remove_query = 'INSERT INTO JobSuggester_Remove ' \
+                    remove_query = 'INSERT OR IGNORE INTO JobSuggester_Remove ' \
                                    '( Id, ContentNonUnicode, RemoveReason ) ' \
                                    'VALUES '
 

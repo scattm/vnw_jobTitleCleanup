@@ -15,28 +15,32 @@ if __name__ == '__main__':
             es2sqlite.run(export_lim=1000, import_lim=250, total_delay_time=100)
 
         elif argv[1] == 'importfile':
-            es2sqlite = ES2SQLite(configfile, 'SRC_ES')
-            es2sqlite.create_sqlite_table()
-            es2sqlite.insert_from_file('JobTitle-v2_5.tsv')
+            if len(argv) < 3:
+                print "Please enter file name"
+            else:
+                filename = argv[2]
+                es2sqlite = ES2SQLite(configfile, 'SRC_ES')
+                es2sqlite.create_sqlite_table()
+                es2sqlite.insert_from_file(filename)
 
-            clean_up = SuggesterCleanUp(configfile, 'DES_ES')
+                clean_up = SuggesterCleanUp(configfile, 'DES_ES')
 
-            print "Pre clean up:"
-            clean_up.create_tables()
-            clean_up.import_to_unique_table()
+                print "Pre clean up:"
+                clean_up.create_tables()
+                clean_up.import_to_unique_table()
 
-            clean_up.find_delete_contain([
-                '́', '̣', '̀', '̉', '̃',
-            ])
-            clean_up.find_hidden_char(['\t', '\n', '\r'])
-            clean_up.find_strip([',', '-', ';', ':', '=', '|', '`', '&'])
-            clean_up.find_replace_middle('kĩ thuật', 'kỹ thuật')
-            clean_up.find_strip_right(['.'])
-            clean_up.finding_duplicated()
+                clean_up.find_delete_contain([
+                    '́', '̣', '̀', '̉', '̃',
+                ])
+                clean_up.find_hidden_char(['\t', '\n', '\r'])
+                clean_up.find_strip([',', '-', ';', ':', '=', '|', '`', '&'])
+                clean_up.find_replace_middle('kĩ thuật', 'kỹ thuật')
+                clean_up.find_strip_right(['.'])
+                clean_up.finding_duplicated()
 
-            clean_up.insert_all_to_add()
+                clean_up.insert_all_to_add()
 
-            clean_up.clean_add()
+                clean_up.clean_add()
 
         elif argv[1] == 'find':
             print 'Finding titles that contain special characters'
